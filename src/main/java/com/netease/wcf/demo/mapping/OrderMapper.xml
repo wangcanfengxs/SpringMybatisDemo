@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netease.wcf.demo.dao.OrderMapper">
+	<resultMap type="com.netease.wcf.demo.bean.Order" id="orderResultMap">
+		<id property="orderId" column="order_id" />
+		<result property="orderTime" column="order_time" jdbcType="TIMESTAMP" />
+		<result property="orderPrice" column="order_price" />
+		<result property="orderCount" column="order_count" />
+		<result property="userId" column="user_id" />
+ 		<association property="content" column="content_id"
+			javaType="com.netease.wcf.demo.bean.Content" select="com.netease.wcf.demo.dao.ContentMapper.selectDetail" />
+	</resultMap>
+	<insert id="insert" parameterType="com.netease.wcf.demo.bean.Order">
+		insert into content_order(order_time, order_price,order_count,content_id,user_id) 
+		values(#{order.orderTime}, #{order.orderPrice}, #{order.orderCount}, #{contentId}, #{userId})
+	</insert>
+	<select id="selectAllByUserId" resultMap="orderResultMap">
+		select * from content_order 
+		where user_id = #{userId}
+	</select>
+	<select id="selectDetail" resultMap="orderResultMap">
+		select * from content_order 
+		where order_id = #{orderId}
+	</select>
+</mapper>
