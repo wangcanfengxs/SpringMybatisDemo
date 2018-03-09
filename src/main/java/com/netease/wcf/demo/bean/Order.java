@@ -4,13 +4,13 @@ import java.sql.Timestamp;
 
 public class Order {
     private Integer orderId; // 订单编号，主键
-//    private Date orderTime; // 购买时间
+    // private Date orderTime; // 购买时间
     private Timestamp orderTime;
     private Integer orderPrice; // 购买价格
     private Integer orderCount;// 购买数量
     // private Integer contentId; // 内容编号，外键
     private Integer userId;// 用户Id，外键
-    private Content content;
+    private Product product;
     // private User user;
     public Order() {
         super();
@@ -61,17 +61,17 @@ public class Order {
         this.userId = userId;
     }
 
-    public Content getContent() {
-        return content;
+    public Product getProduct() {
+        return product;
     }
-    public void setContent(Content content) {
-        this.content = content;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
     public String toString() {
-        return "Order [orderId=" + orderId + ", orderTime=" + orderTime + ", orderPrice=" + orderPrice + ", orderCount=" + orderCount + ", userId=" + userId + ", content="
-                + content + "]";
+        return "Order [orderId=" + orderId + ", orderTime=" + orderTime + ", orderPrice=" + orderPrice + ", orderCount=" + orderCount + ", userId=" + userId + ", product="
+                + product + "]";
     }
 
 }

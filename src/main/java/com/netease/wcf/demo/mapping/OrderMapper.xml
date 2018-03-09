@@ -9,19 +9,19 @@
 		<result property="orderPrice" column="order_price" />
 		<result property="orderCount" column="order_count" />
 		<result property="userId" column="user_id" />
- 		<association property="content" column="content_id"
-			javaType="com.netease.wcf.demo.bean.Content" select="com.netease.wcf.demo.dao.ContentMapper.selectDetail" />
+ 		<association property="product" column="product_id"
+			javaType="com.netease.wcf.demo.bean.Product" select="com.netease.wcf.demo.dao.ProductMapper.selectDetail" />
 	</resultMap>
 	<insert id="insert" parameterType="com.netease.wcf.demo.bean.Order">
-		insert into content_order(order_time, order_price,order_count,content_id,user_id) 
-		values(#{order.orderTime}, #{order.orderPrice}, #{order.orderCount}, #{contentId}, #{userId})
+		insert into product_order(order_time, order_price,order_count,product_id,user_id) 
+		values(#{order.orderTime}, #{order.orderPrice}, #{order.orderCount}, #{productId}, #{userId})
 	</insert>
 	<select id="selectAllByUserId" resultMap="orderResultMap">
-		select * from content_order 
+		select * from product_order 
 		where user_id = #{userId}
 	</select>
 	<select id="selectDetail" resultMap="orderResultMap">
-		select * from content_order 
+		select * from product_order 
 		where order_id = #{orderId}
 	</select>
-</mapper>
+</mapper>															

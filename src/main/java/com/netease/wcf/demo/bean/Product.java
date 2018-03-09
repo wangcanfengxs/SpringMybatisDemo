@@ -1,19 +1,20 @@
 package com.netease.wcf.demo.bean;
 
-public class Content {
+public class Product {
 
-    private Integer contentId; // 内容编号，主键
+    private Integer productId; // 内容编号，主键
     private String title; // 标题
     private String digest; // 摘要
     private String image; // 图片
     private Integer price; // 当前价格
     private String detail; // 全文，详细内容
     private Integer inventory; // 库存，保留字段，不作处理
-    public Integer getContentId() {
-        return contentId;
+
+    public Integer getProductId() {
+        return productId;
     }
-    public void setContentId(Integer contentId) {
-        this.contentId = contentId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
     public String getTitle() {
         return title;
@@ -53,7 +54,7 @@ public class Content {
     }
     @Override
     public String toString() {
-        return "Content [contentId=" + contentId + ", title=" + title + ", digest=" + digest + ", image=" + image + ", price=" + price + ", detail=" + detail + ", inventory="
+        return "Product [productId=" + productId + ", title=" + title + ", digest=" + digest + ", image=" + image + ", price=" + price + ", detail=" + detail + ", inventory="
                 + inventory + "]";
     }
 

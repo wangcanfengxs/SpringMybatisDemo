@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.netease.wcf.demo.dao.ContentMapper">
-	<resultMap type="com.netease.wcf.demo.bean.Content" id="contentResultMap">
-		<id property="contentId" column="content_id" />
+<mapper namespace="com.netease.wcf.demo.dao.ProductMapper">
+	<resultMap type="com.netease.wcf.demo.bean.Product" id="productResultMap">
+		<id property="productId" column="product_id" />
 		<result property="title" column="title" />
 		<result property="digest" column="digest" />
 		<result property="detail" column="detail" />
@@ -12,21 +12,21 @@
 		<result property="price" column="price" />
 		<result property="inventory" column="inventory" />
 	</resultMap>
-	<insert id="insert" parameterType="com.netease.wcf.demo.bean.Content">
+	<insert id="insert" parameterType="com.netease.wcf.demo.bean.Product">
 		insert into
-		content(title,digest,detail,image,price,inventory)
+		product(title,digest,detail,image,price,inventory)
 		values(#{title},
 		#{digest}, #{detail}, #{image}, #{price}, #{inventory})
 	</insert>
 	<delete id="delete">
-		delete from content where content_id = #{id}
+		delete from product where content_id = #{id}
 	</delete>
-	<select id="selectDetail" resultMap="contentResultMap">
-		select * from content where
+	<select id="selectDetail" resultMap="productResultMap">
+		select * from product where
 		content_id = #{id}
 	</select>
-	<select id="selectAll" resultMap="contentResultMap">
-		select * from content
+	<select id="selectAll" resultMap="productResultMap">
+		select * from product
 	</select>
 
 </mapper>

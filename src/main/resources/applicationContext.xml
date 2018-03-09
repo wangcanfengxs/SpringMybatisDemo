@@ -7,9 +7,10 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
            http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd">
 
-	<!-- 自动搜索@Controller标注的类，包括其下面的子包 -->
-	<context:component-scan base-package="com.netease.wcf.demo" />
 
+
+	<context:property-placeholder location="classpath:config.properties" />
+	
 	<!-- 事务管理 -->
 	<bean name="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -32,10 +33,11 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:sqlMapConfig.xml" />
+		<property name="mapperLocations" value="classpath:/com/netease/wcf/demo/mapping/*.xml"/>
+		<!-- <property name="configLocation" value="classpath:mybatis-config.xml" /> -->
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.vlis.analytics.dao" />
+		<property name="basePackage" value="com.netease.wcf.demo.dao" />
 	</bean>
 </beans>

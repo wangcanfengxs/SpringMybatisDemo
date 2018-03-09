@@ -1,9 +1,11 @@
 package com.netease.wcf.demo.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import com.netease.wcf.demo.bean.User;
 
+@Component
 public interface UserMapper {
     
     /**
@@ -13,4 +15,6 @@ public interface UserMapper {
      * @return
      */
     User selectUser(@Param("username") String username,@Param("password")String password);
+    
+    
 }

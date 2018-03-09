@@ -11,12 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netease.wcf.demo.Main;
-import com.netease.wcf.demo.bean.Content;
-import com.netease.wcf.demo.dao.ContentMapper;
+import com.netease.wcf.demo.bean.Product;
+import com.netease.wcf.demo.dao.ProductMapper;
 
 public class ContentTest {
     private SqlSession session = null;
-    private ContentMapper contentMapper = null;
+    private ProductMapper contentMapper = null;
     
     @Before
     public void init(){
@@ -37,8 +37,8 @@ public class ContentTest {
     
     @Test
     public void selectDetail(){
-        contentMapper = session.getMapper(ContentMapper.class);
-        Content content = contentMapper.selectDetail(1);
+        contentMapper = session.getMapper(ProductMapper.class);
+        Product content = contentMapper.selectDetail(1);
         System.out.println(content);
     }
 }
