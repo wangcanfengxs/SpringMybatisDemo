@@ -24,16 +24,16 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectUser(username, password); 
     }
     
-    public User getUser(HttpServletRequest request){
-        Integer userId = null;
-        String password = null;
-        Cookie[] cookies = request.getCookies();
-        for(Cookie cookie : cookies){
-            if("userid".equals(cookie.getName())){
-                userId = Integer.valueOf(cookie.getName());
-                break;
-            }
-        }
-    }
+//    public User getUser(HttpServletRequest request){
+//        Integer userId = null;
+//        String password = null;
+//        Cookie[] cookies = request.getCookies();
+//        for(Cookie cookie : cookies){
+//            if("userid".equals(cookie.getName())){
+//                userId = Integer.valueOf(cookie.getName());
+//                break;
+//            }
+//        }
+//    }
 
 }

@@ -18,6 +18,7 @@ import org.junit.Test;
 import com.netease.wcf.demo.Main;
 import com.netease.wcf.demo.bean.Order;
 import com.netease.wcf.demo.dao.OrderMapper;
+import com.netease.wcf.demo.dao.ProductMapper;
 
 public class OrderTest {
     
@@ -66,5 +67,12 @@ public class OrderTest {
         System.out.println(order.toString());
         orderMapper.insert(order, 1, 1);
         session.commit();
+    }
+    
+    @Test
+    public void testSelectByUserIdAndProductId(){
+        orderMapper = session.getMapper(OrderMapper.class);
+        Order order = orderMapper.selectByUserIdAndProductId(1, 1);
+        System.out.println(order);
     }
 }

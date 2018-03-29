@@ -30,4 +30,12 @@ public interface OrderMapper {
      * @return
      */
     Order selectDetail(Integer orderId);
+    
+    /**
+     * 查询用户购买某商品的订单
+     * @param orderId
+     * @param productId
+     * @return
+     */
+    Order selectByUserIdAndProductId(@Param("userId") Integer userId, @Param("productId") Integer productId);
 }

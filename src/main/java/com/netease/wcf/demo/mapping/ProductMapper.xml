@@ -12,21 +12,83 @@
 		<result property="price" column="price" />
 		<result property="inventory" column="inventory" />
 	</resultMap>
+
+	<resultMap type="com.netease.wcf.demo.bean.Product" id="productWithSellCount">
+		<id property="productId" column="product_id" />
+		<result property="title" column="title" />
+		<result property="image" column="imgae" />
+		<result property="price" column="price" />
+		<result property="sellCount" column="sell_count" />
+	</resultMap>
+	<select id="selectAllProducts" resultMap="productWithSellCount">
+		select product.product_id, title, image, price,
+		sum(order_count) as
+		sell_count from product
+		left join
+		product_order on product.product_id =
+		product_order.product_id where
+		product.put_off = 0
+		group by
+		product.product_id;
+	</select>
 	<insert id="insert" parameterType="com.netease.wcf.demo.bean.Product">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="productId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 		insert into
-		product(title,digest,detail,image,price,inventory)
+		product(title,digest,detail,image,price,inventory,put_off)
 		values(#{title},
-		#{digest}, #{detail}, #{image}, #{price}, #{inventory})
+		#{digest}, #{detail}, #{image}, #{price},
+		#{inventory}, 0)
 	</insert>
 	<delete id="delete">
-		delete from product where content_id = #{id}
+		delete from product where product_id = #{id}
 	</delete>
 	<select id="selectDetail" resultMap="productResultMap">
 		select * from product where
-		content_id = #{id}
+		product_id = #{id}
 	</select>
 	<select id="selectAll" resultMap="productResultMap">
-		select * from product
+		select * from product where
+		put_off = 0;
 	</select>
-
+	<select id="selectIsBuy" resultMap="productResultMap">
+		select * from product where
+		product_id in (select distinct product_id from
+		product_order where
+		user_id = #{userId}) and put_off = 0;
+	</select>
+	<select id="selectIsNotBuy" resultMap="productResultMap">
+		select * from product
+		where product_id not in (select distinct product_id from
+		product_order
+		where user_id = #{userId}) and put_off = 0;
+	</select>
+	<select id="selectIsSell" resultMap="productResultMap">
+		select * from product where
+		product_id in (select distinct product_id from
+		product_order) and
+		put_off = 0;
+	</select>
+	<select id="selectIsNotSell" resultMap="productResultMap">
+		select * from product
+		where product_id not in (select distinct product_id from
+		product_order) and put_off = 0;
+	</select>
+	<update id="setPutOff">
+		update product
+		set put_off = #{putOff}
+		where product_id
+		= #{id}
+	</update>
+	<update id="update" parameterType="com.netease.wcf.demo.bean.Product">
+		update product
+		set title = #{title},
+			digest = #{digest},
+			image = #{image},
+			price = #{price},
+			detail = #{detail}
+		where product_id = #{productId}
+	</update>
 </mapper>

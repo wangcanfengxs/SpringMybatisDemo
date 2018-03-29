@@ -13,26 +13,40 @@
     </div>
     <#else>
     <div class="n-public">
-        <form class="m-form m-form-ht" id="form" method="post" action="/editSubmit?id=${product.id}" onsubmit="return false;" autocomplete="off">
+        <form class="m-form m-form-ht" id="form" method="post" action="/editSubmit"
+        	onsubmit="return false;" autocomplete="off">
             <div class="fmitem">
                 <label class="fmlab">标题：</label>
                 <div class="fmipt">
-                    <input type="hidden" name="id" value="${product.id}"/>
+                    <input type="hidden" name="productId" value="${product.productId}"/>
                     <input class="u-ipt ipt" name="title" value="${product.title}" placeholder="2-80字符"/>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">摘要：</label>
                 <div class="fmipt">
-                    <input class="u-ipt ipt" name="summary" value="${product.summary}" placeholder="2-140字符"／>
+                    <input class="u-ipt ipt" name="digest" value="${product.digest}" placeholder="2-140字符"／>
                 </div>
+            </div>
+            
+            <div class="fmitem">
+            	<label class="fmlab">图片：</label>
+            	<div class="fmipt" id="uploadType">
+	                <input name="pic" type="radio" value="url" checked /> 图片地址
+					<input name="pic" type="radio" value="file"/> 本地上传
+				</div>	
             </div>
             <div class="fmitem">
-                <label class="fmlab">图片：</label>
-                <div class="fmipt">
-                    <input class="u-ipt ipt" name="image" value="${product.image}" placeholder="图片地址"/>
+                <label class="fmlab"></label>
+                <div class="fmipt" id="urlUpload">
+                    <input class="u-ipt ipt" name="image" placeholder="图片地址" value="${product.image}"/>
+                </div>
+                <div class="fmipt" id="fileUpload" style="display:none">
+                    <input class="u-ipt ipt" name="file" type="file" id="fileUp"/>
+                    <button class="u-btn u-btn-primary" id="upload">上传</button>
                 </div>
             </div>
+            
             <div class="fmitem">
                 <label class="fmlab">正文：</label>
                 <div class="fmipt">
@@ -57,6 +71,7 @@
 </div>
 <#include "/include/footer.ftl">
 <script type="text/javascript" src="/js/global.js"></script>
-<script type="text/javascript" src="/js/public.js"></script>
+<script type="text/javascript" src="/js/publish.js"></script>
+
 </body>
 </html>

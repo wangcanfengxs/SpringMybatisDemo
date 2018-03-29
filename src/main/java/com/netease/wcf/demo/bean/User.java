@@ -1,6 +1,10 @@
 package com.netease.wcf.demo.bean;
 
 public class User {
+    
+    public static final Integer BUYER = 0;
+    public static final Integer SELLER = 1;
+    
     private Integer userId; // 用户Id
     private String userName; // 用户昵称
     private Integer userRole; // 用户角色，买家还是卖家

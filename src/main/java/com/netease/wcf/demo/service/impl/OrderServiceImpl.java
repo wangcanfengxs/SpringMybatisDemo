@@ -19,16 +19,16 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Autowired
-    private ProductMapper contentMapper;
+    private ProductMapper productMapper;
 
     @Transactional
     public boolean addOrder(Order order, Integer contentId, Integer userId) {
         //这里需要考虑使用事务，先查询contentId对应的库存
-        Product content = contentMapper.selectDetail(contentId);
+        Product content = productMapper.selectDetail(contentId);
         if (content.getInventory() > order.getOrderCount()) {
             orderMapper.insert(order, contentId, userId);
             content.setInventory(content.getInventory() - order.getOrderCount());
-            contentMapper.update(content);
+            productMapper.update(content);
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<Order> getOrderList(Integer userId) {
-        return null;
+        return orderMapper.selectAllByUserId(userId);
     }
 
 }

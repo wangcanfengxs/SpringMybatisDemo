@@ -1,49 +1,33 @@
 package com.netease.wcf.demo.util;
 
 public class Response {
-    private int state;
-    private String message;
-    private Object data;
+    String message;
+    boolean result;
+    int code;
 
-    public Response() {
-    }
-
-    public Response(int state) {
-        this.state = state;
-    }
-
-    public Response(int state, String message) {
-        this.state = state;
+    public Response(String message, boolean result, int code) {
+        super();
         this.message = message;
+        this.result = result;
+        this.code = code;
     }
-
-    public Response(int state, String message, Object data) {
-        this.state = state;
-        this.message = message;
-        this.data = data;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public Object getData() {
-        return data;
+    public boolean isResult() {
+        return result;
+    }
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+    public int getCode() {
+        return code;
+    }
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public void setData(Object data) {
-        this.data = data;
-    }
 }

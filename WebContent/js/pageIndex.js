@@ -24,7 +24,7 @@
 					loading.show();
 					ajax({
 						url:'/api/delete',
-						data:{id:id},
+						data:{productId:id},
 						success:function(json){
 							this.delItemNode(id);
 							loading.result('删除成功');
