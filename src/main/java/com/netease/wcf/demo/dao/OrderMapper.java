@@ -15,7 +15,7 @@ public interface OrderMapper {
      * @param userId 用户Id
      * @return
      */
-    Integer insert(@Param("order") Order order, @Param("contentId") Integer contentId, @Param("userId") Integer userId);
+    Integer insert(@Param("order") Order order);
 
     /**
      * 查询某用户的所有订单

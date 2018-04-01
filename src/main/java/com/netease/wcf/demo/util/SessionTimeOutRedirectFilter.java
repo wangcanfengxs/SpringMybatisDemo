@@ -27,10 +27,12 @@ public class SessionTimeOutRedirectFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
+        //查看session中的user信息是否已经过期
         if (httpRequest.getSession().getAttribute("user") != null) {
             chain.doFilter(httpRequest, httpResponse);
         } else {
             LOGGER.info("session is timeout." + httpRequest.getRequestURI());
+            //跳转到登录界面
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
         }
     }

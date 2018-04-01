@@ -18,24 +18,16 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    @Autowired
-    private ProductMapper productMapper;
-
     @Transactional
-    public boolean addOrder(Order order, Integer contentId, Integer userId) {
-        //这里需要考虑使用事务，先查询contentId对应的库存
-        Product content = productMapper.selectDetail(contentId);
-        if (content.getInventory() > order.getOrderCount()) {
-            orderMapper.insert(order, contentId, userId);
-            content.setInventory(content.getInventory() - order.getOrderCount());
-            productMapper.update(content);
-            return true;
+    public boolean addOrders(List<Order> orders) {
+        for (Order order : orders) {
+            orderMapper.insert(order);
         }
-        return false;
+        return true;
     }
 
     public Order getOrder(Integer orderId) {
-        return null;
+        return orderMapper.selectDetail(orderId);
     }
 
     public List<Order> getOrderList(Integer userId) {

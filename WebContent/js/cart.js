@@ -59,7 +59,7 @@
 	var layer = new Layer();
 	$('buy').onclick = function(e){
 		var newProducts = products.map(function(arr){
-			return {'id':arr.id,'number':arr.num};
+			return {'id':arr.id,'number':arr.num, 'price':arr.price};
 		});
 		console.log(newProducts);
 		var ele = e.target;

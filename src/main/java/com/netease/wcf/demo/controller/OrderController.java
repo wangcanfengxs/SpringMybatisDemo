@@ -1,5 +1,8 @@
 package com.netease.wcf.demo.controller;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
 import com.netease.wcf.demo.bean.Order;
 import com.netease.wcf.demo.bean.User;
 import com.netease.wcf.demo.service.OrderService;
@@ -43,9 +47,25 @@ public class OrderController {
      */
     @RequestMapping(value="/api/buy", method=RequestMethod.POST)
     @ResponseBody
-    public Response makeOrder(@RequestBody String data){
-        System.out.println("products:" + data);
-        //TODO
+    public Response makeOrder(@RequestBody String data, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        
+        System.out.println("orders:" + data);
+        JSONArray arrays = JSONArray.parseArray(data);
+        List<Order> orders = new ArrayList<Order>();
+        int size = arrays.size();
+        for(int i = 0; i < size; i++){
+            Order order = new Order();
+            order.setOrderTime(new Timestamp(System.currentTimeMillis()));
+            order.setOrderPrice(arrays.getJSONObject(i).getInteger("price"));
+            order.setOrderCount(arrays.getJSONObject(i).getInteger("number"));
+            order.setProductId(arrays.getJSONObject(i).getInteger("id"));;
+            order.setUserId(user.getUserId());
+            orders.add(order);
+        }
+        
+        orderService.addOrders(orders);
+        
         return new Response("make order success.", true, 200);
     }
 }

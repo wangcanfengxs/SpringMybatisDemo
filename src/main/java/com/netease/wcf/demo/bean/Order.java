@@ -4,11 +4,10 @@ import java.sql.Timestamp;
 
 public class Order {
     private Integer orderId; // 订单编号，主键
-    // private Date orderTime; // 购买时间
     private Timestamp orderTime;
     private Integer orderPrice; // 购买价格
     private Integer orderCount;// 购买数量
-    // private Integer contentId; // 内容编号，外键
+    private Integer productId; // 内容编号，外键
     private Integer userId;// 用户Id，外键
     private Product product;
     // private User user;
@@ -48,12 +47,12 @@ public class Order {
     public void setOrderCount(Integer orderCount) {
         this.orderCount = orderCount;
     }
-    // public Integer getContentId() {
-    // return contentId;
-    // }
-    // public void setContentId(Integer contentId) {
-    // this.contentId = contentId;
-    // }
+     public Integer getProductId() {
+     return productId;
+     }
+     public void setProductId(Integer productId) {
+     this.productId = productId;
+     }
     public Integer getUserId() {
         return userId;
     }

@@ -8,12 +8,10 @@ public interface OrderService {
     
     /**
      * 增加订单，需要考虑事务
-     * @param order 订单详情
-     * @param contentId 订单内容编号
-     * @param userId 用户编号
+     * @param orders 购物车列表
      * @return
      */
-    boolean addOrder(Order order, Integer contentId, Integer userId);
+    boolean addOrders(List<Order> orders);
     
     /**
      * 查询订单

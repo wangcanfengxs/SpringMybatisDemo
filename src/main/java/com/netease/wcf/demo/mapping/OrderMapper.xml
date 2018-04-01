@@ -14,7 +14,7 @@
 	</resultMap>
 	<insert id="insert" parameterType="com.netease.wcf.demo.bean.Order">
 		insert into product_order(order_time, order_price,order_count,product_id,user_id) 
-		values(#{order.orderTime}, #{order.orderPrice}, #{order.orderCount}, #{productId}, #{userId})
+		values(#{order.orderTime}, #{order.orderPrice}, #{order.orderCount}, #{order.productId}, #{order.userId})
 	</insert>
 	<select id="selectAllByUserId" resultMap="orderResultMap">
 		select * from product_order 
